@@ -5,7 +5,8 @@ import time
 # 크롤링 시점 기록을 위한 변수 선언
 global_date = ''
 global_hour = ''
-
+# 데이터를 저장할 딕셔너리 생성
+data = {}
 
 # 크롤링 시점 기록
 def set_time():
@@ -28,9 +29,10 @@ def crawl_google():
     # div태그의 list-item-container클래스를 갖는 모든 태그를 urls에 list형태로 저장
     urls = driver.find_elements_by_css_selector("a.list-item-container")
     # 크롤링한 데이터를 txt파일로 저장할 경로 지정
-    # 날짜가 지나면 자동으로 다음 날짜의 txt파일을 생성하고 데이터 저장
     save_path = "./data/{date}.txt".format(date=global_date)
 
+    # 해당 경로에 txt 파일이 없을 경우 txt 파일 추가
+    # 해당 경로의 파일에 데이터를 추가함
     with open(save_path, "a", encoding="UTF-8") as f:
         # 시간을 기록
         f.write(global_hour + "시\n")
@@ -40,6 +42,31 @@ def crawl_google():
 
     # Chrome driver 종료
     driver.close()
+
+
+# 데이터를 읽어서 저장함
+def read_data():
+    # 데이터가 있는 파일의 경로 저장
+    save_path = "./data/{date}.txt".format(date=global_date)
+    
+    # 해당 경로의 파일을 읽음
+    with open(save_path, "r", encoding="UTF-8") as f:
+        # 시간을 키로, 검색어와 url 리스트를 값으로 data에 저장
+        while True:
+            data_time = f.readline().strip()
+            if data_time == '':
+                break
+
+            titles = []
+            urls = []
+
+            for rank in range(10):
+                title, space, url = f.readline().strip().rpartition(" ")
+
+                titles.append(title)
+                urls.append(url)
+
+            data[data_time] = {"titles": titles, "urls": urls}
 
 
 # Flask 웹 페이지
