@@ -1,5 +1,17 @@
 from flask import Flask, render_template
 from selenium import webdriver
+import time
+
+# 크롤링 시점 기록을 위한 변수 선언
+global_date = ''
+global_hour = ''
+
+
+# 크롤링 시점 기록
+def set_time():
+    global global_date, global_hour
+    global_date = time.strftime("%Y%m%d")
+    global_hour = time.strftime("%H")
 
 
 # Google Trends 크롤러
