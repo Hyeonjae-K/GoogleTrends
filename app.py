@@ -76,7 +76,8 @@ app = Flask(__name__)
 # 기본 path로 접속시 index.html 페이지를 반환
 @app.route('/')
 def index():
-    return render_template("index.html")
+    # data 딕셔너리를 인자로 index.html에 전달
+    return render_template("index.html", data=data)
 
 
 # Flask 실행
