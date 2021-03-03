@@ -16,3 +16,17 @@ def crawl_google():
 
     # Chrome driver 종료
     driver.close()
+
+
+# Flask 웹 페이지
+app = Flask(__name__)
+
+
+# 기본 path로 접속시 index.html 페이지를 반환
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+
+if __name__ == '__main__':
+    app.run()
