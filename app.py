@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from selenium import webdriver
+from apscheduler.schedulers.background import BackgroundScheduler
 import time
 
 # 크롤링 시점 기록을 위한 변수 선언
@@ -17,6 +18,8 @@ def set_time():
 
 # Google Trends 크롤러
 def crawl_google():
+    # 크롤링 시작 전 시간 업데이트
+    set_time()
     # Chrome driver 열기
     driver = webdriver.Chrome()
     # Google Trends url 접속
@@ -69,6 +72,11 @@ def read_data():
             data[data_time] = {"titles": titles, "urls": urls}
 
 
+# 자동 실행을 위한 APScheduler 사용
+sched = BackgroundScheduler()
+sched.add_job(crawl_google, 'cron', minute='0')
+sched.start()
+
 # Flask 웹 페이지
 app = Flask(__name__)
 
@@ -76,10 +84,12 @@ app = Flask(__name__)
 # 기본 path로 접속시 index.html 페이지를 반환
 @app.route('/')
 def index():
+    read_data()
     # data 딕셔너리를 인자로 index.html에 전달
     return render_template("index.html", data=data)
 
 
 # Flask 실행
 if __name__ == '__main__':
+    set_time()
     app.run()
