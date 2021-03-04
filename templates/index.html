@@ -49,18 +49,18 @@
             <div class="row no-gutters">
                 <div class="col-md-12 blog-wrap">
                     {% for time in data %}
-                    <table class="table table-dark table-hover">
+                    <table class="table table-dark table-hover table-margin">
                         <thead>
                             <tr>
-                                <th scope="col">{{ time }}</th>
-                                <th scope="col">Keywords</th>
+                                <th scope="row">{{ time }}</th>
+                                <th class="table-keyword" scope="col">Keywords</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for rank in range(10) %}
                             <tr>
                                 <th scope="row">{{ rank+1 }}</th>
-                                <td>{{ data[time]['titles'][rank] }}</td>
+                                <td class="table-keyword"><a href="{{ data[time]['urls'][rank] }}"><div>{{ data[time]['titles'][rank] }}</div></a></td>
                             </tr>
                             {% endfor %}
                             </tr>
