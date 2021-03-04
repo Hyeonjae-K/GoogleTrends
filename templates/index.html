@@ -35,9 +35,9 @@
                 data-scrollax-parent="true">
                 <div class="col-md-12 ftco-animate text-center">
                     <div class="desc">
-                        <span class="subheading">Magazine</span>
-                        <h1 style="background-image: url('../static/images/bg_1.jpg');">Erase</h1>
-                        <span class="subheading-2">UK Edition</span>
+                        <span class="subheading">Google Trends</span>
+                        <h1 style="background-image: url('../static/images/bg_1.jpg');">Keywords</h1>
+                        <span class="subheading-2">Record</span>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,25 @@
         <div class="container-fluid px-0">
             <div class="row no-gutters">
                 <div class="col-md-12 blog-wrap">
-
+                    {% for time in data %}
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">{{ time }}</th>
+                                <th scope="col">Keywords</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rank in range(10) %}
+                            <tr>
+                                <th scope="row">{{ rank+1 }}</th>
+                                <td>{{ data[time]['titles'][rank] }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -79,9 +97,7 @@
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
                 stroke="#F96D00" />
-        </svg></div>
-
-    </div>
+        </svg>
     </div>
 
 
