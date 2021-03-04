@@ -9729,3 +9729,21 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+/* Custom */
+.table-margin {
+  table-layout: fixed;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 0px;
+}
+
+th[scope=row] {
+  width: 61px;
+  text-align: center;
+}
+
+.table-keyword {
+  text-align: center;
+}
