@@ -9747,3 +9747,7 @@ th[scope=row] {
 .table-keyword {
   text-align: center;
 }
+
+.table-term {
+  margin-top: 16px;
+}
