@@ -91,5 +91,5 @@ def index():
 
 # Flask 실행
 if __name__ == '__main__':
-    set_time()
+    crawl_google()
     app.run()
