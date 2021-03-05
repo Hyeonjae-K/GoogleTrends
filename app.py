@@ -9,6 +9,7 @@ global_hour = ''
 # 데이터를 저장할 딕셔너리 생성
 data = {}
 
+
 # 크롤링 시점 기록
 def set_time():
     global global_date, global_hour
