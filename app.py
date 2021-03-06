@@ -93,7 +93,7 @@ app = Flask(__name__)
 def index():
     read_data()
     # data 딕셔너리를 인자로 index.html에 전달
-    return render_template("index.html", data=data)
+    return render_template("index.html", data=data, times=list(reversed(data)))
 
 
 # Flask 실행
