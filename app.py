@@ -73,6 +73,11 @@ def read_data():
             data[data_time] = {"titles": titles, "urls": urls}
 
 
+# 0시가 됐을 때 data 변수를 초기화 하기 위한 함수
+def clear_data():
+    data.clear()
+
+
 # 자동 실행을 위한 APScheduler 사용
 sched = BackgroundScheduler()
 sched.add_job(crawl_google, 'cron', minute='0')
