@@ -80,6 +80,7 @@ def clear_data():
 
 # 자동 실행을 위한 APScheduler 사용
 sched = BackgroundScheduler()
+sched.add_job(clear_data, 'cron', hour='0')
 sched.add_job(crawl_google, 'cron', minute='0')
 sched.start()
 
